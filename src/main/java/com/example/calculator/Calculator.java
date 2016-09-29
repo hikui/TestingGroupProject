@@ -103,9 +103,6 @@ public class Calculator {
     }
 
     public static void main(String[] args) throws UnsupportedOperatorException {
-        System.out.println(Calculator.evaluate("abcdefg"));
-        System.out.println(Calculator.evaluate("100 * 2 + 12"));
-        System.out.println(Calculator.evaluate("100 * ( 2 + 12 )"));
-        System.out.println(Calculator.evaluate("100 * ( 2 + 12 ) / 14"));
+        System.out.println(Calculator.evaluate("(1"));
     }
 }
