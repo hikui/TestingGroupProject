@@ -83,7 +83,8 @@ public class Tomorrow {
 
 		/* print the date of next day */
 		System.out.format("Date tomorrow is %02d/%02d/%04d%n", dd, mm, yyyy);
-		return "" + dd + "" + mm + "" + yyyy;
+		return String.format("%02d/%02d/%04d", dd, mm, yyyy);
+
 	}
 
 }
