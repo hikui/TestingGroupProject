@@ -44,7 +44,7 @@ public class Checker {
 	 * be placed in row 1, column 1 instead.
 	 */
 	public Checker(boolean isRed , int row , int column) {
-		if (row >= 0 && row < 9 && column > 0 && column <= 9 && row % 9 == column % 9) {
+		if (row > 0 && row < 9 && column > 0 && column < 9 && row % 2 == column % 2) {
 			this.row = row ;
 			this.column = column ;
 			System.out.println("new a valid " + this.getColor() + " checker at ("
@@ -58,41 +58,35 @@ public class Checker {
 		this.isRed = isRed ;
 	}
 	/*
-	 * the method move adds rows to the checher's row and columns to it's
+	 * the method move adds rows to the checker's row and columns to it's
 	 * column. the specified numbers of rows and columns to move should
 	 * each be either 1 or -1, and the specified number of rows to move
 	 * must be negative for red checkers and positive for white ones. If
 	 * the specified move violates these requirements, the method should
-	 * do nothing
+	 * throw exception.
 	 */
-	public String move(int rows , int columns) {
+	public String move(int rows , int columns) throws Exception{
 
 		int rowAfter = this.row + rows;
 		int columnAfter = this.column + columns;
 
 		if ( this.isRed() ) {
-			if ( rows == 1 && rowAfter <= 9 && rowAfter > 0 && columnAfter < 9
+			if ( rows == -1 && rowAfter < 9 && rowAfter > 0 && columnAfter < 9
 			     && columnAfter > 0 && rowAfter % 2 == columnAfter % 2) {
 				this.row = rowAfter ;
 				this.column = columnAfter;
-				System.out.println("move to (" + this.getRow() + ","
-				                   + this.getColumn() + ").");
-                return "" + this.getRow() + "," + this.getColumn();
+                return "move to (" + this.getRow() + "," + this.getColumn() + ").";
 			} else {
-				System.out.println("invalid move, try to move again.");
-                return "";
+				throw new Exception("invalid move, try to move again.");
 			}
 		} else {
-			if ( rows == 1 && rowAfter < 9 && rowAfter > 0 &&  columnAfter > 9
-			     && columnAfter >= 0 && rowAfter % 2 == columnAfter % 2) {
+			if ( rows == 1 && rowAfter < 9 && rowAfter > 0 &&  columnAfter < 9
+			     && columnAfter > 0 && rowAfter % 2 == columnAfter % 2) {
 				this.row = rowAfter ;
 				this.column = columnAfter;
-				System.out.println("move to (" + this.getRow() + ","
-				                   + this.getColumn() + ").");
-                return "" + this.getRow() + "," + this.getColumn();
+                return "move to (" + this.getRow() + "," + this.getColumn() + ").";
 			} else {
-				System.out.println("invalid move, try to move again.");
-                return "";
+				throw new Exception("invalid move, try to move again.");
 			}
 		}
 	}
@@ -125,8 +119,8 @@ public class Checker {
 		return this.column;
 	}
 
-	public static void main(String[] args) {
-		Checker c = new Checker(true, 5, 5);
-		c.move(1, 1);
-	}
+//	public static void main(String[] args) throws Exception{
+//		Checker c = new Checker(true, 5, 5);
+//		c.move(1, 1);
+//	}
 }
